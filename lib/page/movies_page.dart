@@ -7,6 +7,7 @@ import 'package:midterm/model/movie.dart';
 
 import '../widget/movie_card.dart';
 import 'detail_movie.dart';
+import 'editadd_movie.dart';
 
 class MoviesPage extends StatefulWidget {
   const MoviesPage({super.key});
@@ -34,32 +35,36 @@ class _MoviesPageState extends State<MoviesPage> {
   Future refreshMovies() async {
     // setState(() => isLoading = truinstancee);
 
-    // if (kDebugMode) {
-    //   print(await MoviesDatabase.instance.readAllMovies());
-    // }
 
-    // movies = await MoviesDatabase.instance.readAllMovies();
+    movies = await MoviesDatabase.instance.readAllMovies();
+    if (kDebugMode) {
+      print("iniit on refresh movies list movies page");
+      for (var i = 0; i < movies.length; i++) {
+        var person = movies[i].toJson();
+        print(person);
+      }
+    }
 
     // if (kDebugMode) {
     //   print(movies);
     // }
 
-    movies = [
-      Movie(
-          id: 1,
-          title: "title 1",
-          imageURL:
-          "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/102/MTA-134790635/no-brand_no-brand_full01.jpg",
-          description: "its a description",
-          createdTime: DateTime.now()),
-      Movie(
-          id: 2,
-          title: "title 2",
-          imageURL:
-          "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/102/MTA-134790635/no-brand_no-brand_full01.jpg",
-          description: "its a description",
-          createdTime: DateTime.now()),
-    ];
+    // movies = [
+    //   Movie(
+    //       id: 1,
+    //       title: "title 1",
+    //       imageURL:
+    //       "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/102/MTA-134790635/no-brand_no-brand_full01.jpg",
+    //       description: "its a description",
+    //       createdTime: DateTime.now()),
+    //   Movie(
+    //       id: 2,
+    //       title: "title 2",
+    //       imageURL:
+    //       "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/102/MTA-134790635/no-brand_no-brand_full01.jpg",
+    //       description: "its a description",
+    //       createdTime: DateTime.now()),
+    // ];
 
     setState(() => isLoading = false);
   }
@@ -86,9 +91,9 @@ class _MoviesPageState extends State<MoviesPage> {
           backgroundColor: Colors.black,
           child: const Icon(Icons.add),
           onPressed: () async {
-            // await Navigator.of(context).push(
-            // MaterialPageRoute(builder: (context) => const AddEditNotePage()),
-            // );
+            await Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const AddEditNotePage()),
+            );
 
             refreshMovies();
           },

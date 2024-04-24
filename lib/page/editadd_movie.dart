@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../db/movies_databases.dart';
 import '../model/movie.dart';
@@ -71,6 +72,7 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
 
     if (isValid) {
       final isUpdating = widget.note != null;
+      print(isUpdating);
 
       if (isUpdating) {
         await updateNote();
@@ -89,7 +91,14 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
       imageURL: imageURL,
     );
 
-    await MoviesDatabase.instance.update(note);
+    if (kDebugMode) {
+      print(note.title);
+      print(note.description);
+      print(note.imageURL);
+    }
+
+    var res = await MoviesDatabase.instance.update(note);
+    print("final update: $res");
   }
 
   Future addNote() async {
@@ -99,6 +108,12 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
       createdTime: DateTime.now(),
       imageURL: imageURL,
     );
+
+    if (kDebugMode) {
+      print(note);
+      print(description);
+      print(imageURL);
+    }
 
     await MoviesDatabase.instance.create(note);
   }

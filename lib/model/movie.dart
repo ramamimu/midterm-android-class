@@ -47,8 +47,8 @@ class Movie {
 
   static Movie fromJson(Map<String, Object?> json) => Movie(
         id: json[MovieFields.id] as int?,
-        title: json[MovieFields.description] as String,
-        imageURL: json[MovieFields.description] as String,
+        title: json[MovieFields.title] as String,
+        imageURL: json[MovieFields.imageURL] as String,
         description: json[MovieFields.description] as String,
         createdTime: DateTime.parse(json[MovieFields.time] as String),
       );

@@ -26,9 +26,9 @@ class NoteFormWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          buildImageURL(),
-          const SizedBox(height: 8),
           buildTitle(),
+          const SizedBox(height: 8),
+          buildImageURL(),
           const SizedBox(height: 8),
           buildDescription(),
           const SizedBox(height: 16),
@@ -39,7 +39,7 @@ class NoteFormWidget extends StatelessWidget {
 
   Widget buildImageURL() => TextFormField(
     maxLines: 1,
-    initialValue: title,
+    initialValue: imageURL,
     style: const TextStyle(
       color: Colors.white70,
       fontWeight: FontWeight.bold,
@@ -47,7 +47,7 @@ class NoteFormWidget extends StatelessWidget {
     ),
     decoration: const InputDecoration(
       border: InputBorder.none,
-      hintText: 'Title',
+      hintText: 'image URL',
       hintStyle: TextStyle(color: Colors.white70),
     ),
     validator: (imageURL) =>

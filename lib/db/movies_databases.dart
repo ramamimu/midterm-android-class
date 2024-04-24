@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:midterm/model/movie.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -35,7 +36,7 @@ class MoviesDatabase {
       ${MovieFields.title} $textType,
       ${MovieFields.imageURL} $textType,
       ${MovieFields.description} $textType,
-      ${MovieFields.time} $textType,
+      ${MovieFields.time} $textType
     )
     ''');
   }
@@ -43,7 +44,10 @@ class MoviesDatabase {
   Future<Movie> create(Movie movie) async {
     final db = await instance.database;
 
-    final id = await db.insert(tableMoviesName, movie.toJson());
+    if (kDebugMode) {
+      print(movie.toJson());
+
+    }final id = await db.insert(tableMoviesName, movie.toJson());
     return movie.copy(id: id);
   }
 
@@ -75,12 +79,15 @@ class MoviesDatabase {
 
   Future<int> update(Movie movie) async {
     final db = await instance.database;
+    if (kDebugMode) {
+      print("on update ${movie.toJson()}");
+    }
 
     return db.update(
       tableMoviesName,
       movie.toJson(),
       where: '${MovieFields.id} = ?',
-      whereArgs: [MovieFields.id],
+      whereArgs: [movie.id],
     );
   }
 
