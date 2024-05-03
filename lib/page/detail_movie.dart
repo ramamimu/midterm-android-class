@@ -69,14 +69,14 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
               children: [
                 Image(
                   image: NetworkImage(
-                      widget.movie.imageURL),
+                      note.imageURL),
                   fit: BoxFit.fill,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 Text(
-                  widget.movie.title,
+                  note.title,
                   style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -93,7 +93,7 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
                   height: 10,
                 ),
                 Text(
-                  widget.movie.description,
+                  note.description,
                   style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ],
